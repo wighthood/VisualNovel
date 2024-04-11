@@ -91,6 +91,6 @@ yes that's right it was red! but there was a truck it blared it's horn at me as 
     ->red
 
 === ending===
-#speaker: narration
+#speaker: narration,#end
 you suddenly wake up and found yourself in a hospital surrounded by your family relieved that you are awake. The hospital will release you in a few days to make sure you're fine. you'll eventually go back to a normal life. but this event has mentally scarred you for life.
 ->END

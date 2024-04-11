@@ -8,5 +8,4 @@ public class Selectable : MonoBehaviour
     {
         DialogueManager.SetDecision(element);
     }
-
 }

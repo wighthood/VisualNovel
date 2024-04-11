@@ -1,10 +1,10 @@
-﻿using System.Collections;
+﻿using Ink.Runtime;
+using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-using Ink.Runtime;
 using TMPro;
+using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -12,6 +12,8 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private GameObject textBox;
     [SerializeField] private GameObject customButton;
     [SerializeField] private GameObject optionPanel;
+    [SerializeField] private GameObject Background;
+    [SerializeField] private Texture endingImage;
     [SerializeField] private bool isTalking = false;
 
     static Story story;
@@ -28,12 +30,14 @@ public class DialogueManager : MonoBehaviour
         nametag = textBox.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
         tags = new List<string>();
         choiceSelected = null;
+        AdvanceDialogue();
     }
 
     public void next(InputAction.CallbackContext context)
     {
         if (context.started)
         {
+            Debug.Log(choiceSelected);
             if (story.canContinue)
             {
                 //nametag.text = "Phoenix";
@@ -77,23 +81,19 @@ public class DialogueManager : MonoBehaviour
             message.text += letter;
             yield return null;
         }
-        if(CharacterScript.instance.isTalking)
-        {
-            SetAnimation("idle");
-        }
         yield return null;
     }
 
     // Create then show the choices on the screen until one got selected
     IEnumerator ShowChoices()
     {
-        Debug.Log("There are choices need to be made here!");
         List<Choice> _choices = story.currentChoices;
 
         for (int i = 0; i < _choices.Count; i++)
         {
             GameObject temp = Instantiate(customButton, optionPanel.transform);
-            temp.transform.GetChild(0).GetComponent<Text>().text = _choices[i].text;
+            temp.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = _choices[i].text;
+            temp.transform.position += Vector3.down * 200*i;
             temp.GetComponent<Selectable>().element = _choices[i];
         }
 
@@ -108,6 +108,7 @@ public class DialogueManager : MonoBehaviour
     public static void SetDecision(Choice element)
     {
         choiceSelected = element;
+        Debug.Log(choiceSelected);
         story.ChooseChoiceIndex(choiceSelected.index);
     }
 
@@ -119,8 +120,13 @@ public class DialogueManager : MonoBehaviour
         {
             Destroy(optionPanel.transform.GetChild(i).gameObject);
         }
+
+
         choiceSelected = null; // Forgot to reset the choiceSelected. Otherwise, it would select an option without player intervention.
+        Debug.Log(choiceSelected);
+
         AdvanceDialogue();
+  
     }
 
     /*** Tag Parser ***/
@@ -136,41 +142,36 @@ public class DialogueManager : MonoBehaviour
 
             switch(prefix.ToLower())
             {
-                case "anim":
-                    SetAnimation(param);
+                case "speaker":
+                    setSpeakerName(param);
                     break;
-                case "color":
-                    SetTextColor(param);
+                case "end":
+                    ending();
                     break;
                 default:
                     break;
             }
         }
     }
-    void SetAnimation(string _name)
+
+    void ending()
     {
-        CharacterScript.instance.PlayAnimation(_name);
+        Background.GetComponent<Image>().image = endingImage;
     }
-    void SetTextColor(string _color)
+
+    void setSpeakerName(string _name)
     {
-        switch(_color)
+        switch(_name)
         {
-            case "red":
-                message.color = Color.red;
+            case "player":
+                nametag.text = "you";
                 break;
-            case "blue":
-                message.color = Color.cyan;
+            case "Ange":
+                nametag.text = "Ange";
                 break;
-            case "green":
-                message.color = Color.green;
-                break;
-            case "white":
-                message.color = Color.white;
-                break;
-            default:
-                Debug.Log($"{_color} is not available as a text color");
+            case "narration":
+                nametag.text = "";
                 break;
         }
     }
-
 }
