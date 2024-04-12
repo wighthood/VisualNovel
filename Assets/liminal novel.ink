@@ -6,7 +6,7 @@
 You are woken up by the voice of your bestfriend Ange, you open your eyes to an unfamiliar space full of repeating room and lit up by artificial light 
 
 #speaker: Ange
-finally you're awake. i was getting worried. how are you feeling
+finally you're awake. i was getting worried. how are you feeling ?
 
 #speaker: player
 wha ? where are we ? 
