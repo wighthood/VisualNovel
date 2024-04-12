@@ -6,17 +6,27 @@
 You are woken up by the voice of your bestfriend Ange, you open your eyes to an
 unfamiliar space full of repeating room and lit up by artificial light 
 
+#speaker: Ange
+finally you're awake. i was getting worried. how are you feeling
+
 #speaker: player
-where are we ? 
+wha ? where are we ? 
 
 #speaker: Ange
 i don't know looks like some liminal space. you know like those stories online.
 
 #speaker: player
-    * staying here won't help us let's look around for an exit.
+a liminal space ! what do you mean those don't exist.
+
+#speaker: Anger
+
+i don't know but it really looks like one. so any idea how to get out of here ?
+
+#speaker: player
+    * staying here won't help us let's look around.
         ->Explore
 #speaker: player
-    * how did we get here ? let's try and remember our day from the start maybe it'll help.
+    *maybe if we remembered our day we will find how to get out. what did you do this morning ?
         ->Remember
 
 === Remember ===
