@@ -550,8 +550,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: Thank you for playing this thing and specifically thanks to the people
-    that helped me during the devellopement of this game, GwenBlanketSpecter, Lyre
-    and Echorin.
+    that helped me during it's devellopment, GwenBlanketSpecter, Lyre and Echorin.
+    with whom i wouldn't have been able to make it.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
