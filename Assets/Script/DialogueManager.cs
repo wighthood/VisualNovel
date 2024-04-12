@@ -13,6 +13,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private GameObject customButton;
     [SerializeField] private GameObject optionPanel;
     [SerializeField] private GameObject Background;
+    [SerializeField] private GameObject endingButton;
     [SerializeField] private Texture endingImage;
     [SerializeField] private bool isTalking = false;
 
@@ -157,6 +158,7 @@ public class DialogueManager : MonoBehaviour
     void ending()
     {
         Background.GetComponent<Image>().image = endingImage;
+        endingButton.SetActive(true);
     }
 
     void setSpeakerName(string _name)
