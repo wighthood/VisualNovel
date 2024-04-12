@@ -754,13 +754,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1911b8b56747c464a9748dd188bce54b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inkFile: {fileID: 4900000, guid: f372c61f00f48014a99aa14fd311f5c0, type: 3}
+  inkFile: {fileID: 4900000, guid: 297b619aa18d99b4aa41928eda060b4f, type: 3}
   textBox: {fileID: 253825957}
   customButton: {fileID: 2402844013533114606, guid: ec4fbe98810e82f468290ff80466abd1, type: 3}
   optionPanel: {fileID: 1293452597}
   Background: {fileID: 1730882968}
   endingButton: {fileID: 1811137701}
-  endingImage: {fileID: 2800000, guid: 4fa216467b89aa64aaffd5b7a9c1af54, type: 3}
+  endingImage: {fileID: 21300000, guid: 4fa216467b89aa64aaffd5b7a9c1af54, type: 3}
   isTalking: 0
 --- !u!114 &1007238966
 MonoBehaviour:

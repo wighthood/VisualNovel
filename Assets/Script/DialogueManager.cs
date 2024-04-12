@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -14,7 +14,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private GameObject optionPanel;
     [SerializeField] private GameObject Background;
     [SerializeField] private GameObject endingButton;
-    [SerializeField] private Texture endingImage;
+    [SerializeField] private Sprite endingImage;
     [SerializeField] private bool isTalking = false;
 
     static Story story;
@@ -38,13 +38,10 @@ public class DialogueManager : MonoBehaviour
     {
         if (context.started)
         {
-            Debug.Log(choiceSelected);
             if (story.canContinue)
             {
-                //nametag.text = "Phoenix";
                 AdvanceDialogue();
 
-                //Are there any choices?
                 if (story.currentChoices.Count != 0)
                 {
                     StartCoroutine(ShowChoices());
@@ -58,7 +55,6 @@ public class DialogueManager : MonoBehaviour
     }
 
 
-    // Finished the Story (Dialogue)
     private void FinishDialogue()
     {
         Debug.Log("End of Dialogue!");
@@ -109,7 +105,6 @@ public class DialogueManager : MonoBehaviour
     public static void SetDecision(Choice element)
     {
         choiceSelected = element;
-        Debug.Log(choiceSelected);
         story.ChooseChoiceIndex(choiceSelected.index);
     }
 
@@ -124,7 +119,6 @@ public class DialogueManager : MonoBehaviour
 
 
         choiceSelected = null; // Forgot to reset the choiceSelected. Otherwise, it would select an option without player intervention.
-        Debug.Log(choiceSelected);
 
         AdvanceDialogue();
   
@@ -138,13 +132,12 @@ public class DialogueManager : MonoBehaviour
         tags = story.currentTags;
         foreach (string t in tags)
         {
-            string prefix = t.Split(": ")[0];
-            string param = t.Split(": ")[1];
+            string[] tag = t.Split(": ");
 
-            switch(prefix.ToLower())
+            switch (tag[0].ToLower())
             {
                 case "speaker":
-                    setSpeakerName(param);
+                    setSpeakerName(tag[1]);
                     break;
                 case "end":
                     ending();
@@ -157,7 +150,7 @@ public class DialogueManager : MonoBehaviour
 
     void ending()
     {
-        Background.GetComponent<Image>().image = endingImage;
+        Background.GetComponent<Image>().sprite = endingImage;
         endingButton.SetActive(true);
     }
 
